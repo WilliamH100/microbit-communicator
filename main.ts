@@ -1,18 +1,19 @@
 radio.onReceivedNumber(function (receivedNumber) {
     clearWait = 5
+    soundExpression.hello.playUntilDone()
     basic.showIcon(IconNames.Square)
     basic.showIcon(IconNames.SmallSquare)
     showIcon(receivedNumber)
     clearWait = 5
 })
 input.onButtonPressed(Button.A, function () {
+    clearWait = 2
     if (iconNum == 4) {
         iconNum = 0
     } else {
         iconNum += 1
     }
     showIcon(iconNum)
-    clearWait = 2
 })
 function showIcon (num: number) {
     if (num == 0) {
@@ -31,6 +32,15 @@ function showIcon (num: number) {
         basic.showIcon(IconNames.Sad)
     }
 }
+input.onButtonPressed(Button.B, function () {
+    clearWait = 2
+    if (iconNum == 0) {
+        iconNum = 4
+    } else {
+        iconNum += -1
+    }
+    showIcon(iconNum)
+})
 input.onLogoEvent(TouchButtonEvent.Touched, function () {
     radio.sendNumber(iconNum)
     for (let index = 0; index < 2; index++) {
